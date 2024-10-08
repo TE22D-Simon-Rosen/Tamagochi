@@ -7,18 +7,25 @@ class Tamagochi{
     public string name;
 
     public void Feed(){
-        Console.WriteLine($"{name} säger: MMMMMMM så GOT!!!:D)D)D)D)");
+        Console.WriteLine($"\n{name} säger: MMMMMMM så GOT!!!:D)D)D)D)");
         hunger = 0;
     }
 
     public void Hi(){
-        Console.WriteLine($"{name} säger: {words[Random.Shared.Next(0, words.Count() - 1)]}!!! :DD");
+        if (words.Count == 0){
+            Console.WriteLine($"\n{name}: HEJ!");
+            Console.WriteLine($"{name} kan inga ord... Lär den något!");
+        }
+        else{
+            Console.WriteLine($"\n{name}: {words[Random.Shared.Next(words.Count)]}!!! :DD");
+        }
         ReduceBoredom();
     }
 
     public void Teach(string word){
         words.Add(word);
-        Console.WriteLine($"{word}!!!!! :DDD");
+        Console.WriteLine($"\n{word}!!!!! :DDD");
+        ReduceBoredom();
     }
 
     public void Tick(){
@@ -31,7 +38,7 @@ class Tamagochi{
     }
 
     public void PrintStats(){
-        Console.WriteLine($"\nHunger: {hunger} \nBoredom: {boredom}");
+        Console.WriteLine($"\n{name} stats: \nHunger: {hunger} \nBoredom: {boredom}");
     }
 
     public bool GetAlive(){
